@@ -1,7 +1,3 @@
-Poniżej masz **gotowe README.md po angielsku**, czyste, zrozumiałe i bez marketingowego bełkotu. Takie, które nie wstyd wrzucić na GitHuba.
-
----
-
 # 🇵🇱🇷🇺 Polish–Russian Flashcard App (Tkinter)
 
 A simple desktop flashcard application built with **Python**, **Tkinter**, and **Pandas** to help learn Russian–Polish vocabulary using spaced repetition principles.
@@ -130,13 +126,3 @@ It is intentionally kept simple and readable rather than over-engineered.
 
 MIT License.
 Use it, modify it, break it, learn from it.
-
----
-
-Jeśli chcesz:
-
-* wersję **bardziej „produktową”**
-* README pod **rekrutację**
-* albo **ostrą krytykę architektury** i co byś poprawił jako kolejny krok
-
-to wtedy już jedziemy bez litości.
