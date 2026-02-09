@@ -1,34 +1,45 @@
+import random
 from tkinter import *
 import pandas as pd
-import time
-
-
 
 BACKGROUNDCOLOR = "#B1DDC6"
 TEXT_BG_GREEN = "#91C2AF"
 
 
+data = pd.read_csv('RU_PL - Arkusz1.csv')
+data_dict = data.to_dict(orient="records")
+
+current_card = {}
+print(current_card)
+
 # ------------------ Logic ------------------ #
 def show_polish(word):
+
     canvas.itemconfig(image_canvas, image=back_img)
     canvas.itemconfig(word_text, text=word)
     canvas.itemconfig(title_text, text="Polski")
 
-
 def random_word():
+    global flip_timer
+    window.after_cancel(flip_timer)
     canvas.itemconfig(image_canvas, image=front_img)
-    data = pd.read_csv('RU_PL - Arkusz1.csv')
-    row = data.sample(n=1).iloc[0]
-    row_ru = row["Rosyjski"]
-    row_pl = row["Polski"]
-    canvas.itemconfig(word_text, text=row_ru)
+    current_card = random.choice(data_dict)
+    rosyjski = current_card["Rosyjski"]
+    polski = current_card["Polski"]
+    canvas.itemconfig(word_text, text=rosyjski)
     canvas.itemconfig(title_text, text="Rosyjski")
-    canvas.after(5000, lambda : show_polish(row_pl))
+    flip_timer = window.after(5000, lambda: show_polish(polski))
+    print(current_card)
+
 
 def wrong_button():
     random_word()
 
-def coorect_button():
+def remove_card():
+    data_dict.remove(current_card)
+    data = pd.DataFrame(current_card)
+    data.to_csv("wordl_to_learn.csv")
+
     random_word()
 
 
@@ -50,12 +61,12 @@ canvas.grid(column=1, row=1)
 
 #------------ Button's --------------- #
 correct_button_img = PhotoImage(file='right.png')
-right_button = Button(image=correct_button_img, highlightthickness=0, command=coorect_button)
+right_button = Button(image=correct_button_img, highlightthickness=0, command=remove_card)
 right_button.grid(column=1, row=4,padx=(500, 0) )
 
 incorrect_button_img = PhotoImage(file='wrong.png')
-wrong_button = Button(image=incorrect_button_img, highlightthickness=0,command=wrong_button)
-wrong_button.grid(column=1, row=4, padx=(0, 500))
+wrong_btn = Button(image=incorrect_button_img, highlightthickness=0,command=wrong_button)
+wrong_btn.grid(column=1, row=4, padx=(0, 500))
 
 
 # --- CENTER WINDOW ---
@@ -73,6 +84,8 @@ window.attributes("-topmost", True)
 window.after(200, lambda: window.attributes("-topmost", False))
 window.focus_force()
 # ----- Function Callout ----- #
+flip_timer = window.after(5000, func=random_word)
 random_word()
+
 # --- Main Loop --- #
 window.mainloop()
