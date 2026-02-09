@@ -1,1 +1,124 @@
 # rusian_polish_learning_words_fishy_game
+🇵🇱🇷🇺 Polish–Russian Flashcard App (Tkinter)
+
+A simple desktop flashcard application built with Python, Tkinter, and Pandas to help learn Russian–Polish vocabulary using spaced repetition principles.
+
+The app displays a Russian word first and automatically flips the card after a few seconds to reveal the Polish translation. Users can mark words as known or unknown, gradually reducing the learning set.
+
+✨ Features
+
+Flashcard-style vocabulary learning
+
+Automatic card flip (Russian → Polish)
+
+Random word selection from CSV data
+
+Ability to remove known words from the learning pool
+
+Clean and minimal Tkinter GUI
+
+CSV-based data storage (easy to extend or replace)
+
+🧠 How It Works
+
+A random Russian word is displayed.
+
+After 5 seconds, the card flips and shows the Polish translation.
+
+Buttons allow the user to:
+
+❌ Mark as incorrect – the word stays in the learning pool
+
+✅ Mark as correct – the word is removed and saved to a separate CSV file
+
+The next word is shown automatically.
+
+This allows the app to gradually focus only on words that still need practice.
+
+📂 Project Structure
+.
+├── main.py
+├── RU_PL - Arkusz1.csv
+├── wordl_to_learn.csv
+├── card_front.png
+├── card_back.png
+├── right.png
+├── wrong.png
+└── README.md
+
+📄 CSV Format
+
+The vocabulary file must contain the following columns:
+
+Rosyjski,Polski
+привет,cześć
+дом,dom
+
+
+Rosyjski – Russian word
+
+Polski – Polish translation
+
+🛠 Requirements
+
+Python 3.9+
+
+pandas
+
+Install dependencies:
+
+pip install pandas
+
+
+Tkinter is included by default with most Python installations.
+
+▶️ Running the App
+python main.py
+
+
+Make sure all image files and CSV files are in the same directory as the script.
+
+🚧 Known Limitations
+
+No persistence of progress between sessions (except removed words CSV)
+
+CSV file is loaded fully into memory
+
+No language configuration (fixed Russian → Polish)
+
+Basic error handling
+
+These are deliberate trade-offs to keep the project simple and educational.
+
+🎯 Educational Purpose
+
+This project was built as a learning exercise to practice:
+
+Tkinter GUI programming
+
+Event-driven logic
+
+Timers (after)
+
+State management
+
+Working with CSV data using Pandas
+
+It is intentionally kept simple and readable rather than over-engineered.
+
+📌 Possible Improvements
+
+Save progress between sessions
+
+Add multiple language pairs
+
+Shuffle timing based on difficulty
+
+Add statistics and progress tracking
+
+Package as a standalone app (e.g. with Nuitka or PyInstaller)
+
+📜 License
+
+MIT License.
+Use it, modify it, break it, learn from it.
